@@ -1,0 +1,42 @@
+h3{
+    margin: 1%;
+}
+.absence{
+    &__container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content:center ;
+    }
+
+    &__header{
+        width:70%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        border-bottom: 1px black solid;
+    }
+    &__body{
+        width:70%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        text-justify: center;
+        justify-self: center;
+    }  
+    &__start-date{
+        width : 10%;
+    }
+    &__end-date{
+        width : 10%;
+    }
+    &__motif{
+        width : 30%;
+    }
+    &__label{
+        width : 20%;
+    }
+    &__type{
+        width : 20%;
+    }
+}

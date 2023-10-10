@@ -1,0 +1,17 @@
+<div class="connexion__form-container">
+    <form [formGroup]="connexionForm" (ngSubmit)="submitForm()">
+        <mat-form-field class="connexion__login-form-field">
+            <mat-label>Adresse mail</mat-label>
+            <input matInput #email type="email" formControlName="email" />
+        </mat-form-field>
+        <br/>
+            <mat-form-field class="connexion__password-form-field">
+                <mat-label>Mot de passe</mat-label>
+                <input matInput #email type="password" formControlName="password" />
+            </mat-form-field>
+        <div>
+            <button mat-raised-button color="primary" type="submit">Connexion</button>
+        </div>
+    </form>
+    <a routerLink="password_reset">Mot de passe oublié ?</a>
+</div>

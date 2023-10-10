@@ -1,0 +1,28 @@
+.calendar-wrapper{
+  margin: 5rem;
+  width:30%;
+}
+
+.calendar-container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
+::ng-deep.cellHighlight{
+  &-weekend{
+    background: lightgrey!important;
+      border-radius: 0%;
+  }
+  &-conge-perso{
+      background: lightsalmon!important;
+      border-radius: 0%;
+  }
+  &-conge-force{
+    background: lightgreen!important;
+    border-radius: 0%;
+}
+  &-basic{
+    border-radius: 100%;
+  }
+}

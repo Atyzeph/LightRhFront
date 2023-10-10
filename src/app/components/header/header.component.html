@@ -1,0 +1,44 @@
+<mat-toolbar class="toolbar"color='primary' >
+    <span>LightRh</span>
+    <span class="toolbar__middle-spacer"></span>
+    <span *ngIf="userInfos?.email !=''" class="toolbar__menu-container">
+        <button mat-button (click)='redirectTo("calendar")'>Accueil</button>
+        <button mat-button [matMenuTriggerFor]="absences">Absences</button>
+        <mat-menu #absences="matMenu">
+            <button mat-menu-item (click)='redirectTo("absences_view")'>Voir mes absences</button>
+            <button mat-menu-item (click)='redirectTo("creation_absence")'>Demander une absence</button>
+        </mat-menu>
+        <button mat-button [matMenuTriggerFor]="manager" *ngIf='userInfos?.profile=="MANAGER"'>Manager</button>
+        <mat-menu #manager="matMenu">
+            <button mat-menu-item>Employés du service</button>
+            <button mat-menu-item>Calendrier du service</button>
+            <button mat-menu-item>Administrer les congés</button>
+        </mat-menu>
+        <button mat-button [matMenuTriggerFor]="admin" *ngIf='userInfos?.role=="ADMIN"'>Admin</button>
+        <mat-menu #admin="matMenu">
+            <button mat-menu-item (click)='redirectTo("creation_compte")'>Créer un employé</button>
+            <button mat-menu-item>Administrer les RTT employeur</button>
+            <button mat-menu-item>Administrer les jours fériés</button>
+        </mat-menu>
+    </span>
+    <span class="toolbar__middle-spacer"></span>
+    <div [ngStyle]='{
+            "display":"flex", 
+            "flex-direction":"row", 
+            "align-items":"center"
+            }' 
+        *ngIf="userInfos?.email !=''; else notLogged">
+        <div [ngStyle]='{"display":"flex", "flex-direction":"column"}'>
+            <div [ngStyle]='{"display":"flex", "flex-direction":"row"}'>
+                {{userInfos?.firstName}} {{userInfos?.lastName}}
+            </div>
+            <div [ngStyle]='{"display":"flex", "flex-direction":"row"}'>
+                {{(userInfos?.role == "ADMIN")?"Admin":""}} {{(userInfos?.profile == "MANAGER")?"Manager":"Employé"}}
+            </div>
+        </div> 
+        <button mat-raised-button (click)="logout()">Se déconnecter</button>       
+    </div>
+    <ng-template #notLogged>
+        Non connecté
+    </ng-template>    
+</mat-toolbar>

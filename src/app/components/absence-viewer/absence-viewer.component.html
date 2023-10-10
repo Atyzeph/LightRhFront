@@ -1,0 +1,29 @@
+<div class="list-absence__container">
+    <div class="list-absence__header">
+        <div class="list-absence__start-date">Date de début</div>
+        <div class="list-absence__end-date">Date de fin</div> 
+        <div class="list-absence__motif">Motif saisi</div>
+        <div class="list-absence__type">Type de demande</div>
+        <div class="list-absence__statut">Statut</div>
+        <div class="list-absence__actions">Actions</div>
+    </div>
+
+    <div *ngFor="let absence of absences" class="list-absence__list-container">
+        <div class="list-absence__start-date">{{absence.dateStart | date : 'dd/MM'}}</div>
+        <div class="list-absence__end-date">{{absence.dateEnd  |date : 'dd/MM'}}</div> 
+        <div class="list-absence__motif">{{(absence.motif=="" || absence.motif == null )?"Aucun motif saisi":absence.motif}}</div>
+        <div class="list-absence__type">{{getAbsenceTypeString(absence.type)}}</div>
+        <div class="list-absence__statut">{{getAbsenceStatusString(absence.status)}}</div>
+        <span *ngIf="absence.status === absenceStatus.WAITING_VALIDATION || absence.status === absenceStatus.VALIDATED">
+            <ng-template *ngIf="role !== 'ADMIN'; else elseBlock">
+                <span *ngIf="absence.type !== absenceType.EMPLOYER_RTT && absence.type !== absenceType.HOLIDAY">
+                    <button (click)="getAbsenceId(absence)">Modifier</button>
+                </span>
+            </ng-template>
+            <!-- If ADMIN -->
+            <ng-template #elseBlock>
+                <button (click)="getAbsenceId(absence)">Modifier</button>
+            </ng-template>
+        </span>               
+    </div>
+</div>

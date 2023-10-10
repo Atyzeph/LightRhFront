@@ -1,0 +1,49 @@
+<form (ngSubmit)="onSubmitForm()">
+  <label>Date de début:</label>
+  <input type="date" name="dateStart" [(ngModel)]="absence.dateStart">
+
+  <label>Date de fin:</label>
+  <input type="date" name="dateEnd" [(ngModel)]="absence.dateEnd">
+
+  <label>Type d'absence:</label>
+  <select name="type" [(ngModel)]="absence.type">
+    <option value="EMPLOYEE_RTT">
+      RTT employé
+    </option>
+    <option *ngIf="role == 'ADMIN'" value="EMPLOYER_RTT">
+      RTT employeur
+    </option>
+    <option *ngIf="role == 'ADMIN'" value="HOLIDAY">
+      Vacances
+    </option>
+    <option value="PAID_LEAVE">
+      Congés payés
+    </option>
+    <option value="UNPAID_LEAVE">
+      Congés sans solde
+    </option>
+  </select>
+
+  <label>Motif:</label>
+  <input type="text" name="motif" [(ngModel)]="absence.motif">
+
+  <button type="submit">Modifier l'absence</button>
+</form>
+  <h3>Ancienne demande</h3>
+  <div class="absence__container">
+    <div class="absence__header">
+      <div class="absence__start-date">Date de début</div>
+      <div class="absence__end-date">Date de fin</div> 
+      <div class="absence__type">Type de demande</div>
+      <div class="absence__motif">Motif saisi</div>
+      <div class="absence__label">Label saisi</div>
+    </div>
+    <div class="absence__body">
+        <div class="absence__start-date">{{currentAbsence.dateStart | date : 'dd/MM'}}</div>
+        <div class="absence__end-date">{{currentAbsence.dateEnd  | date : 'dd/MM'}}</div> 
+        <div class="absence__type">{{currentAbsence.type}}</div>
+        <div class="absence__motif">{{currentAbsence.motif}}</div>
+        <div class="absence__label">{{currentAbsence.label}}</div>
+    </div>
+  </div>
+  <button (click)="redirectTo('absences_view')">Annuler</button>

@@ -1,0 +1,31 @@
+<form (ngSubmit)="onSubmitForm()">
+  <label>Date de début:</label>
+  <input type="date" name="dateStart" [(ngModel)]="absence.dateStart" required>
+
+  <label>Date de fin:</label>
+  <input type="date" name="dateEnd" [(ngModel)]="absence.dateEnd" required>
+
+  <label>Type d'absence:</label>
+  <select name="type" [(ngModel)]="absence.type" required>
+    <option value="EMPLOYEE_RTT">
+      RTT employé
+    </option>
+    <option value="EMPLOYER_RTT">
+      RTT employeur
+    </option>
+    <option value="HOLIDAY">
+      Vacances
+    </option>
+    <option value="PAID_LEAVE">
+      Congés payés
+    </option>
+    <option value="UNPAID_LEAVE">
+      Congés sans solde
+    </option>
+  </select>
+
+  <label>Motif:</label>
+  <input type="text" name="motif" [(ngModel)]="absence.motif" required>
+
+  <button type="submit">Ajouter Absence</button>
+</form>
