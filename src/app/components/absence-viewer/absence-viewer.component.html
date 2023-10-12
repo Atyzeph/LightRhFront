@@ -14,7 +14,7 @@
         <div class="list-absence__motif">{{(absence.motif=="" || absence.motif == null )?"Aucun motif saisi":absence.motif}}</div>
         <div class="list-absence__type">{{getAbsenceTypeString(absence.type)}}</div>
         <div class="list-absence__statut">{{getAbsenceStatusString(absence.status)}}</div>
-        <span *ngIf="absence.status === absenceStatus.WAITING_VALIDATION || absence.status === absenceStatus.VALIDATED">
+        <span *ngIf="absence.status !== absenceStatus.REJECTED && absence.status !== absenceStatus.VALIDATED">
             <ng-template *ngIf="role !== 'ADMIN'; else elseBlock">
                 <span *ngIf="absence.type !== absenceType.EMPLOYER_RTT && absence.type !== absenceType.HOLIDAY">
                     <button (click)="getAbsenceId(absence)">Modifier</button>
